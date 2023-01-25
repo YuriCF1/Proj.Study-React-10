@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useState, useEffect } from "react";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 import styles from "./Register.module.css";
 
@@ -11,7 +12,9 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const { createUser, error: authError, loading } = useAuthentication();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
@@ -27,7 +30,8 @@ const Register = () => {
       return console.error(error);
     }
 
-    console.log(user);
+    const rest = await createUser(user)
+    console.log(rest);
   };
 
   return (
@@ -75,7 +79,7 @@ const Register = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            />
+          />
         </label>
         <label htmlFor="">
           <span>Confirmação de senha:</span>
@@ -91,7 +95,7 @@ const Register = () => {
             }}
           />
         </label>
-        {error && <p className="error">{error}</p> }
+        {error && <p className="error">{error}</p>}
         <button className="btn">Cadastrar</button>
       </form>
     </div>
