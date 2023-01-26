@@ -9,21 +9,26 @@ import Footer from "./components/Footer";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 
+//Context
+import { AuthProvider } from "./context/AuthContext";
+
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-          </Routes>
-        </div>
-        <Footer />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <NavBar />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+            </Routes>
+          </div>
+          <Footer />
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
