@@ -30,9 +30,15 @@ const Register = () => {
       return console.error(error);
     }
 
-    const rest = await createUser(user)
-    console.log(rest);
+    const res = await createUser(user)
+    console.log(res);
   };
+
+  useEffect(()=> {
+    if(authError) {
+      setError(authError)
+    }
+  },[authError])
 
   return (
     <div className={styles.register}>
@@ -95,8 +101,9 @@ const Register = () => {
             }}
           />
         </label>
+        {!loading && <button className="btn">Cadastrar</button>}
+        {loading && <button className="btn" disabled>Aguarde...</button> }
         {error && <p className="error">{error}</p>}
-        <button className="btn">Cadastrar</button>
       </form>
     </div>
   );
