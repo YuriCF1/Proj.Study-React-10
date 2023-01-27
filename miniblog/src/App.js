@@ -16,6 +16,8 @@ import Login from "./pages/Login/Login";
 
 //Context
 import { AuthProvider } from "./context/AuthContext";
+import CreatePost from "./pages/CreatePost/CreatePost";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -40,10 +42,12 @@ function App() {
           <NavBar />
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/about" element={<About />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/register" element={<Register />}></Route>
+              <Route path="/" element={<Home />}/>
+              <Route path="/about" element={<About />}/>
+              <Route path="/login" element={<Login />}/>
+              <Route path="/register" element={<Register />}/>
+              <Route path="/post/create" element={<CreatePost />}/>
+              <Route path="/dashboard" element={<Dashboard />}/>
             </Routes>
           </div>
           <Footer />
