@@ -22,37 +22,28 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        {() => {
-          {
-            /*Treinando um if regular*/
-          }
-          if (!user) {
-            return (
-              <>
-                <li>
-                  <NavLink
-                    to="/login"
-                    className={({ isActive }) =>
-                      isActive ? styles.active : ""
-                    }
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/register"
-                    className={({ isActive }) =>
-                      isActive ? styles.active : ""
-                    }
-                  >
-                    Register
-                  </NavLink>
-                </li>
-              </>
-            );
-          }
-        }}
+        {/* PÁGINAS SEM  O USUÁRIO */}
+        {!user && (
+          <>
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/register"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Register
+              </NavLink>
+            </li>
+          </>
+        )}
+        {/*PÁGINAS COM USUÁRIO*/}
         {user && (
           <>
             <li>
