@@ -1,3 +1,5 @@
+// CENTRALIZAÇÃO DAS FUNÇÕES DE AUTENTIFICAÇÃO
+
 import { dataBank } from "../firebase/config";
 
 import {
@@ -27,6 +29,7 @@ export const useAuthentication = () => {
     }
   }
 
+  // REGISTER_____________________________
   const createUser = async (data) => {
     checkIfIsCancelled();
     setLoading(true);
@@ -43,7 +46,6 @@ export const useAuthentication = () => {
       return user;
     } catch (error) {
       console.log(error.message);
-      console.log(typeof error.message);
 
       let systemErrorMessage;
 
@@ -63,5 +65,11 @@ export const useAuthentication = () => {
     return () => setCanceled(true);
   }, []);
 
-  return { createUser, error, loading, auth };
+  // LOG-OUT_______________________
+  const logout = () => {
+    checkIfIsCancelled();
+    signOut(auth);
+  };
+
+  return { createUser, error, loading, auth, logout };
 };
