@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
-        <BrowserRouter>
+        <BrowserRouter  basename={process.env.PUBLIC_URL}>
           <NavBar />
           <div className="container">
             <Routes>
