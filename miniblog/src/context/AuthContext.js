@@ -7,6 +7,7 @@ export function AuthProvider({ children, value }) {
 
 }
 
+// Hook criado aqui mesmo  'use'
 export function useAuthValue() {
     return useContext(AuthContext)
 }
