@@ -12,31 +12,48 @@ const CreatePost = () => {
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
   const [tags, setTags] = useState([]);
-  const [error, setErros] = useState("");
+  const [formErrors, setFormErrors] = useState("");
   const { user } = useAuthValue();
 
+  console.log(user);
+
   const { insertDocument, response } = useInsertDocument("posts");
-  
+
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErros("");
-    console.log(response);    
+    setFormErrors("");
+
     //Validate image's URL
+    try {
+      new URL(image);
+    } catch (error) {
+      setFormErrors("A imagem precisa ser um URL");
+    }
 
     //Criar o array das tags
+    const tagsArray = tags.split(",");
+    tagsArray.map((tag) => tag.trim().toLowerCase()); //Padronizar tudo em lowercase para que haja a busca mais facilmente
 
     //Checar todos os valores
+    if (!title || !image || !tags || !body) {
+      setFormErrors("Por favor, preencha todos os campos.")
+    }
+
+    if (formErrors) return;
 
     insertDocument({
       title,
       image,
       body,
-      tags,
+      tagsArray,
       uid: user.uid,
       cratedBy: user.displayName,
     });
 
     //Redirect home page
+    navigate("/")
   };
 
   const { login, error: authError, loading } = useAuthentication();
@@ -96,6 +113,7 @@ const CreatePost = () => {
           </button>
         )}
         {response.error && <p className="error">{response.error}</p>}
+        {formErrors && <p className="error">{formErrors}</p>}
       </form>
     </div>
   );
