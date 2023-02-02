@@ -20,12 +20,12 @@
 }
 
 .tags span {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .createdBy {
-    font-style: italic;
-    color: #444;
-    font-size: .8em;
-    margin-bottom: 1em;
+  font-style: italic;
+  color: #444;
+  font-size: 0.8em;
+  margin-bottom: 1em;
 }
