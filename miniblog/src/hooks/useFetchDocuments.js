@@ -4,7 +4,7 @@ import {
   collection, //Definir a coleção
   query, //Pegar um dado
   orderBy, //Ordenção
-  onSnapShot, //Mapear dados que foram alterados
+  onSnapshot, //Mapear dados que foram alterados
   where, //Filtro dos resultados que são trazidos
   QuerySnapshot,
 } from "firebase/firestore";
@@ -34,7 +34,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
         q = await query(collectionRef, orderBy("createdAt", "desc")); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
         //Mapear os dados. Toda vez que alterar, vai atualizar com os dados novos
-        await onSnapShot(q, (QuerySnapshot) => {
+        await onSnapshot(q, (QuerySnapshot) => {
           setDocuments(
             QuerySnapshot.docs.map((doc) => ({
               id: doc.id,
