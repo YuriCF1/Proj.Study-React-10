@@ -18,6 +18,7 @@ import Login from "./pages/Login/Login";
 import { AuthProvider } from "./context/AuthContext";
 import CreatePost from "./pages/CreatePost/CreatePost";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Search from "./pages/Search/Search";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -38,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <AuthProvider value={{ user }}>
-        <BrowserRouter  basename={process.env.PUBLIC_URL}>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <NavBar />
           <div className="container">
             <Routes>
@@ -60,6 +61,7 @@ function App() {
                 path="/dashboard"
                 element={user ? <Dashboard /> : <Navigate to={"/login"} />}
               />
+              <Route path="/search" element={<Search />}></Route>
             </Routes>
           </div>
           <Footer />
