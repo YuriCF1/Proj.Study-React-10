@@ -32,7 +32,16 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         //busca
         //dashboard
 
-        q = await query(collectionRef, orderBy("createdAt", "desc")); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
+        if (search) {
+          q = await query(
+            collectionRef,
+            where("tags", "array-contains", search), //Dentro de 'tags, verica se um item está dentro d o array, que seria o 'search'
+            orderBy("createdAt", "desc")
+          ); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
+        } else {
+          q = await query(collectionRef, orderBy("createdAt", "desc")); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
+        }
+
         //Mapear os dados. Toda vez que alterar, vai atualizar com os dados novos
         await onSnapshot(q, (QuerySnapshot) => {
           setDocuments(
