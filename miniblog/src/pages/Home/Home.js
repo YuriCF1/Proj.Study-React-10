@@ -12,6 +12,7 @@ import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import PostDetail from "../../components/PostDetail";
 
 const Home = () => {
+  const navigate = useNavigate()
   const [postis] = useState([]);
 
   const [query, setQuery] = useState("");
@@ -19,6 +20,10 @@ const Home = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (query) {
+      return navigate(`/search?q=${query}`);
+    }
   };
 
   return (
@@ -40,7 +45,7 @@ const Home = () => {
             // <h3 key={post.id}>{post.title}</h3>
             <PostDetail key={post.id} post={post} />
           ))}
-        {postis && postis.length === 0 && (
+        {posts && posts.length === 0 && (
           <div className={styles.no_posts}>
             <p>Não foram encontrados posts ainda...</p>{" "}
             <Link to="/post/create" target="_blanked" className="btn">
