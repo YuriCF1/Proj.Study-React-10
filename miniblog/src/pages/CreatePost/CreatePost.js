@@ -15,11 +15,9 @@ const CreatePost = () => {
   const [formErrors, setFormErrors] = useState("");
   const { user } = useAuthValue();
 
-  console.log(user);
-
   const { insertDocument, response } = useInsertDocument("posts");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,12 +31,11 @@ const CreatePost = () => {
     }
 
     //Criar o array das tags
-    const tagsArray = tags.split(",");
-    tagsArray.map((tag) => tag.trim().toLowerCase()); //Padronizar tudo em lowercase para que haja a busca mais facilmente
+    const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase()); //Padronizar tudo em lowercase para que haja a busca mais facilmente
 
     //Checar todos os valores
     if (!title || !image || !tags || !body) {
-      setFormErrors("Por favor, preencha todos os campos.")
+      setFormErrors("Por favor, preencha todos os campos.");
     }
 
     if (formErrors) return;
@@ -53,7 +50,7 @@ const CreatePost = () => {
     });
 
     //Redirect home page
-    navigate("/")
+    navigate("/");
   };
 
   const { login, error: authError, loading } = useAuthentication();
