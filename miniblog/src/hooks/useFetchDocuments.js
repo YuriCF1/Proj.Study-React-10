@@ -35,7 +35,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         if (search) {
           q = await query(
             collectionRef,
-            where("tags", "array-contains", search), //Dentro de 'tags, verica se um item está dentro d o array, que seria o 'search'
+            where("tagsArray", "array-contains", search), //Dentro de 'tags, verica se um item está dentro d o array, que seria o 'search'
             orderBy("createdAt", "desc")
           ); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
         } else {
