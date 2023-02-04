@@ -61,7 +61,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: #aaa;
+  color: #7b7b7b;
 }
 
 .btn {
