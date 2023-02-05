@@ -19,6 +19,7 @@ import { AuthProvider } from "./context/AuthContext";
 import CreatePost from "./pages/CreatePost/CreatePost";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Search from "./pages/Search/Search";
+import Post from "./pages/Post/Post";
 
 function App() {
   const [user, setUser] = useState(undefined);
@@ -45,6 +46,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/search" element={<Search />}></Route>
+              <Route path="/post/:id" element={<Post />}></Route>
               <Route
                 path="/login"
                 element={!user ? <Login /> : <Navigate to={"/"} />} //*Reirecionando clicks de acordo com status do usuário
@@ -61,7 +64,6 @@ function App() {
                 path="/dashboard"
                 element={user ? <Dashboard /> : <Navigate to={"/login"} />}
               />
-              <Route path="/search" element={<Search />}></Route>
             </Routes>
           </div>
           <Footer />
