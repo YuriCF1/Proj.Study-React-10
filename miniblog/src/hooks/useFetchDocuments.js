@@ -38,6 +38,12 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
             where("tagsArray", "array-contains", search), //Dentro de 'tags, verica se um item está dentro d o array, que seria o 'search'
             orderBy("createdAt", "desc")
           ); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
+        } else if (uid) {
+          q = await query(
+            collectionRef,
+            where("uid", "==", uid), //Quando o uid(do user), for igual ao uid(do post)
+            orderBy("createdAt", "desc")
+          );
         } else {
           q = await query(collectionRef, orderBy("createdAt", "desc")); //Criando busca de forma mais simples. Pegar dados e ordenar pela data decrescente
         }
