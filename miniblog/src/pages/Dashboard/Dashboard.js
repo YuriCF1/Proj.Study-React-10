@@ -21,15 +21,17 @@ const Dashboard = () => {
   const deleteDocument = (id) => {};
 
   if (loading) {
-    return <strong>Carregando...</strong>
+    return <strong>Carregando...</strong>;
   }
-  return ( 
-    <div>
+  return (
+    <div className={styles.dashboard}>
       <h2>Dashboard</h2>
       <h3>{user.displayName}</h3>
       <p>Gerencie os seus posts</p>
       {posts && posts.length === 0 ? (
-        <div className={styles.noPosts}>
+        <div className={styles.no_posts}>
+          {" "}
+          {/*Tal classe está sendo muito utilizada. Seria melhor tornála global, ou até mesmo um componente*/}
           <p>Não foram encontrados posts</p>
           <Link to="/post/create" className="btn">
             Criar novo post
@@ -37,14 +39,17 @@ const Dashboard = () => {
         </div>
       ) : (
         <>
-          <div>
+          <div className={styles.post_header}>
             <span>Título: </span>
             <span>Ações</span>
           </div>
           {posts &&
             posts.map((post) => (
-              <div key={post.id}>
-                <p>{post.title}</p>
+              <div key={post.id} className={styles.post_row}>
+                <div className={styles.titlesImage}>
+                  <p>{post.title}</p>
+                  <img src={post.image} alt={post.title} className={styles.images}/>
+                </div>
                 <div>
                   <Link to={`/post/${post.id}`} className="btn btn-outline">
                     Ver
