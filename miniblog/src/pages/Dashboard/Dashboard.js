@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 //hooks
 import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 
 const Dashboard = () => {
   const { user } = useAuthValue();
   const uid = user.uid;
+  const { deleteDocument } = useDeleteDocument("posts");
 
   //Post do usuário
   const {
@@ -18,14 +20,20 @@ const Dashboard = () => {
     error,
   } = useFetchDocuments("posts", null, uid);
 
-  const deleteDocument = (id) => {};
-
+  // const deleteDocument = (id) => {};
+  
   if (loading) {
-    return <strong>Carregando...</strong>;
+    return <h4>Carregando...</h4>;
   }
   return (
     <div className={styles.dashboard}>
       <h2>Dashboard</h2>
+      {error && (
+        <h4>
+          Desculpe pelo incomodo, mas ocorreu um erro... Tente novamente mais
+          tarde
+        </h4>
+      )}
       <h3>{user.displayName}</h3>
       <p>Gerencie os seus posts</p>
       {posts && posts.length === 0 ? (
@@ -48,7 +56,11 @@ const Dashboard = () => {
               <div key={post.id} className={styles.post_row}>
                 <div className={styles.titlesImage}>
                   <p>{post.title}</p>
-                  <img src={post.image} alt={post.title} className={styles.images}/>
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className={styles.images}
+                  />
                 </div>
                 <div>
                   <Link to={`/post/${post.id}`} className="btn btn-outline">
