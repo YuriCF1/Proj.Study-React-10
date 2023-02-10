@@ -6,8 +6,7 @@ import { useNavigate, useParams } from "react-router-dom"; //Redirecionar depois
 import { useAuthValue } from "../../context/AuthContext"; //Pegar o usuário e atrelar no post, fazendo a dashboard
 
 import { useAuthentication } from "../../hooks/useAuthentication";
-import { useInsertDocument } from "../../hooks/useInsertDocument";
-import { usefetchDocument } from "../../hooks/useFetchDocument";
+import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 
 const EditPost = () => {
@@ -15,14 +14,14 @@ const EditPost = () => {
   const { user } = useAuthValue();
   const { document: post } = useFetchDocument("posts", id);
 
+  const { updateDocument, response } = useUpdateDocument("posts");
+
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
   const [tags, setTags] = useState([]);
   const [formErrors, setFormErrors] = useState("");
   const navigate = useNavigate();
-
-  const { insertDocument, response } = useInsertDocument("posts");
 
   useEffect(() => {
     if (post) {
@@ -56,17 +55,19 @@ const EditPost = () => {
 
     if (formErrors) return;
 
-    insertDocument({
+    const newData = {
       title,
       image,
       body,
       tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
-    });
+    };
+    updateDocument(id, newData);
+    console.log("tried");
 
     //Redirect home page
-    navigate("/");
+    navigate("/dashboard");
   };
 
   const { login, error: authError, loading } = useAuthentication();
@@ -102,7 +103,11 @@ const EditPost = () => {
               />
             </label>
             <p className={styles.preview_title}>Preview da imagem atual:</p>
-            <img className={styles.image_preview} src={post.image} alt={post.title} />
+            <img
+              className={styles.image_preview}
+              src={post.image}
+              alt={post.title}
+            />
             <label>
               <span>Conteúdo:</span>
               <textarea
