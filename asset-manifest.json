@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/your-app-name/static/css/main.39afec2b.css",
-    "main.js": "/your-app-name/static/js/main.288fb914.js",
-    "static/js/787.95489147.chunk.js": "/your-app-name/static/js/787.95489147.chunk.js",
-    "index.html": "/your-app-name/index.html",
-    "main.39afec2b.css.map": "/your-app-name/static/css/main.39afec2b.css.map",
-    "main.288fb914.js.map": "/your-app-name/static/js/main.288fb914.js.map",
-    "787.95489147.chunk.js.map": "/your-app-name/static/js/787.95489147.chunk.js.map"
+    "main.css": "/Proj.Study-React-10/static/css/main.0e92a17a.css",
+    "main.js": "/Proj.Study-React-10/static/js/main.e7ff2e9f.js",
+    "static/js/787.95489147.chunk.js": "/Proj.Study-React-10/static/js/787.95489147.chunk.js",
+    "index.html": "/Proj.Study-React-10/index.html",
+    "main.0e92a17a.css.map": "/Proj.Study-React-10/static/css/main.0e92a17a.css.map",
+    "main.e7ff2e9f.js.map": "/Proj.Study-React-10/static/js/main.e7ff2e9f.js.map",
+    "787.95489147.chunk.js.map": "/Proj.Study-React-10/static/js/787.95489147.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.39afec2b.css",
-    "static/js/main.288fb914.js"
+    "static/css/main.0e92a17a.css",
+    "static/js/main.e7ff2e9f.js"
   ]
 }
