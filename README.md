@@ -2,7 +2,7 @@
 
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 ## About it
-A Project of a Blog, tu make posts, accounts. Made it to train React and learn more about Firebase
+A Project of a Blog, to make posts, accounts... Made it to train React and learn more about Firebase
 
 ## Descrição
 Create your account, post a photo and a text. Search everything by the tags
